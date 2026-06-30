@@ -1,0 +1,84 @@
+# UDSM Student Support Assistant — full stack
+# Brings up MongoDB, Ollama, the FastAPI backend and the React frontend.
+#
+#   docker compose up --build
+#
+# Then open http://localhost:5173 (frontend) — the backend is on :8000.
+# First run: pull a model from the UI (or `docker compose exec ollama ollama pull phi3`).
+
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    # For NVIDIA GPU acceleration, uncomment and ensure nvidia-container-toolkit
+    # is installed on the host:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+      ollama:
+        condition: service_started
+    environment:
+      MONGO_URL: mongodb://mongo:27017
+      MONGO_DB_NAME: udsm_assistant
+      OLLAMA_URL: http://ollama:11434
+      MODEL_NAME: ${MODEL_NAME:-phi3}
+      EMBEDDING_DEVICE: cpu
+      REQUIRE_AUTH: ${REQUIRE_AUTH:-false}
+      AUTH_SECRET: ${AUTH_SECRET:-udsm-dev-secret-change-me}
+      DEFAULT_ADMIN_USERNAME: ${DEFAULT_ADMIN_USERNAME:-admin}
+      DEFAULT_ADMIN_PASSWORD: ${DEFAULT_ADMIN_PASSWORD:-admin12345}
+      CORS_ORIGINS: "*"
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend_data:/app/data
+      - backend_logs:/app/logs
+      - model_cache:/models
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # The browser (on the host) reaches the backend at localhost:8000.
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+volumes:
+  mongo_data:
+  ollama_data:
+  backend_data:
+  backend_logs:
+  model_cache:

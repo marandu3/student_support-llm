@@ -1,0 +1,23 @@
+# UDSM Student Support Assistant - backend dependencies
+# Tested with Python 3.12 (required: torch/faiss have no 3.14 wheels yet).
+#
+# PyTorch is installed separately so you can pick the right build:
+#   GPU (CUDA 12.4):  pip install torch --index-url https://download.pytorch.org/whl/cu124
+#   CPU only:         pip install torch --index-url https://download.pytorch.org/whl/cpu
+# Then:               pip install -r requirements.txt
+
+fastapi
+uvicorn[standard]
+python-multipart
+ollama
+httpx
+requests
+pydantic
+python-dotenv
+sentence-transformers
+faiss-cpu
+numpy
+pypdf
+python-docx
+pymongo
+pytest

@@ -1,0 +1,30 @@
+# Virtual environments
+venv/
+venv312/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Env / secrets
+.env
+
+# Logs
+logs/*.log
+logs/*.log.*
+
+# RAG cache (rebuilt automatically)
+data/.cache/
+
+# User accounts (created at runtime by /auth/register)
+data/users.json
+data/users.json.tmp
+
+# Admin-managed knowledge base + its metadata (uploaded at runtime)
+data/kb/
+data/rag_documents.json
+data/rag_documents.json.tmp
+
+# Test artifacts
+tests/test_results.txt
