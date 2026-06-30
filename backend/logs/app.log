@@ -45,3 +45,11 @@ In your responses:
 2026-06-30 13:27:42,510 | ERROR | HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
 2026-06-30 13:27:49,744 | INFO | Question: hello
 2026-06-30 13:27:53,779 | ERROR | HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-06-30 13:31:31,821 | INFO | Question: hey
+2026-06-30 13:31:36,287 | INFO | Answer: Hello! How can I assist with your university experience today? Is there a specific service or question regarding courses, library services, IT support, accommodation, finances, academic calendar, or conduct that you have in mind? Let's address any issues so everything is set for success at the University.
+2026-06-30 13:31:50,267 | INFO | Question: i need to eat
+2026-06-30 13:31:54,642 | INFO | Answer: As a University Student Support Assistant focused on academic needs, I'm here primarily for your educational inquiries within my scope of work at the university. If you have questions related to dining options around campus or nearby establishments where students often go, please let me know and I can help with that!
+2026-06-30 13:32:26,406 | INFO | Question: how do i register on a course cs336
+2026-06-30 13:32:31,256 | INFO | Answer: Hello! To enroll in the Course CS336, please visit our online registration portal at [University Registration Page] or contact the registrar's office directly to complete your form. They will need some basic information from you like student ID and transcript for verification purposes before confirming your spot.
+
+Can I assist with anything else?
