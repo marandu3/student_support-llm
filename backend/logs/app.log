@@ -41,3 +41,7 @@ In your responses:
 2026-06-30 01:50:57,852 | INFO | Answer: Hello! How can I assist you with your University matters today?
 2026-06-30 01:51:12,927 | INFO | Question: i want to register for my course
 2026-06-30 01:51:17,499 | INFO | Answer: To assist with your registration, please visit our campus bookstore or submit an online request through [University Course Registration Portal]. If you need help navigating the process or have specific questions regarding prerequisites or academic load, feel free to reach out directly.
+2026-06-30 13:27:38,453 | INFO | Question: hello
+2026-06-30 13:27:42,510 | ERROR | HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-06-30 13:27:49,744 | INFO | Question: hello
+2026-06-30 13:27:53,779 | ERROR | HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
